@@ -29,8 +29,8 @@ Route::get('video/{id}','VideoController@show');
 Route::post('video','VideoController@store');
 
 //Update Video
-Route::put('videos','VideoController@store');
+Route::put('video','VideoController@store');
 
 //Delete Video
-Route::delete('videos','VideoController@destroy');
+Route::delete('video/{id}','VideoController@destroy');
 
