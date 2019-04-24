@@ -19,7 +19,7 @@ class VideosTableSeeder extends Seeder
         foreach(range(1,30) as $index){
            $videos =  Videos::create([
                 'title' => $faker->text(20),
-                'description' => $faker->text(200),
+                'description' => $faker->text(150),
                 'url' => $faker->url(),
                 'thumbnailUrl' => $faker->imageUrl(1200,600),
                 'user_id' => $faker->randomElement($users)
