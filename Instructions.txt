@@ -1,0 +1,56 @@
+
+Instructions:
+=============
+
+1. Download or Clone the github repository:
+    Repositorpy Link:
+    -----------------
+    https://github.com/ashfaqshuvo007/teachit_demo
+
+2. How to Get the app Up and running:
+---------------------------------------    
+    a) Open cmd/terminal and run command:
+        composer install
+    b) Copy .env.example and make .env file
+        run command:  cp .env.example .env
+    c)Generate a Key for the app :
+     run command: php artisan key:generate
+
+
+3) Database setup for the app
+--------------------------------
+    a) Make an empty Database (mysql)
+    b) Migrate the database:
+        run on cmd: php artisan Migrate
+
+4) Set up the demo data for the database
+------------------------------------------
+
+There are four tables in the database and the package should include foour seeder file. Run db:seed command for each starting with the UserTableSeeder file.
+This should be easy using the following command.
+
+php artisan db:seed --class=UsersTableSeeder
+php artisan db:seed --class=VideosTableSeeder
+php artisan db:seed --class=LikesTableSeeder
+php artisan db:seed --class=CommentsTableSeeder
+
+Now your app is ready for testing the api CRUD.
+
+Testing the api:
+=================
+
+You can use your browser ,but I prefer and recommend using "POSTMAN" api testing tool.
+
+Well, the url you should hit for it to run and show data as json is: 
+
+a) For all videos (15 videos and paginated)
+
+ a get request to:
+localhost/teachit_demo/api/videos
+
+b) For a single video:
+
+a get request to:
+localhost/teachit_demo/api/video/1 and  so on ...
+
+

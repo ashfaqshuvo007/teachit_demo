@@ -17,7 +17,7 @@ class VideoController extends Controller
     public function index()
     {
         //get videos
-        $videos = Videos::with(['likes', 'comments'])->paginate(15);
+        $videos = Videos::with(['likes', 'comments'])->get();
 
         //get a collection of Videos as a resource
         return  VideoResource::collection($videos);

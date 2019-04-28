@@ -21,7 +21,7 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('user_id')->on('users');
-            $table->foreign('video_id')->references('video_id')->on('videos');
+            $table->foreign('videos_id')->references('videos_id')->on('videos');
         });
     }
 
