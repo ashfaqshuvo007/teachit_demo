@@ -12,4 +12,17 @@ class Users extends Model
     protected $fillable = [
         'name','email','avatar','password'
     ];
+
+    public function videos(){
+        return $this->hasMany(Videos::class,'videos_id');
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comments::class,'videos_id');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Likes::class,'videos_id');
+    }
 }
