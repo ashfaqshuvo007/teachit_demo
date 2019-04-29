@@ -16,11 +16,11 @@ class LikesTableSeeder extends Seeder
     {
         $faker = Faker::create();
         $users = DB::table('users')->pluck('user_id');
-        $videos = DB::table('videos')->pluck('video_id');
+        $videos = DB::table('videos')->pluck('videos_id');
         foreach(range(1,10) as $index){
             $likes = Likes::create([
                 'user_id' => $faker->randomElement($users),
-                'video_id' => $faker->randomElement($videos),
+                'videos_id' => $faker->randomElement($videos),
             ]);
         }
         
