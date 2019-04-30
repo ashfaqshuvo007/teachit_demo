@@ -81,7 +81,7 @@ h
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome To Teach IT
+                    Welcome To Teachit
                 </div>
             </div>
         </div>
