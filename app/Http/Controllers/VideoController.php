@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Videos;
 use App\Http\Resources\Video as VideoResource;
+use App\Http\Resources\VideoCollection as VideoCollectionResource;
+
 use App\Http\Requests;
 
 class VideoController extends Controller
@@ -20,7 +22,7 @@ class VideoController extends Controller
         $videos = Videos::with(['likes', 'comments'])->paginate(10);
 
         //get a collection of Videos as a resource
-        return  VideoResource::collection($videos);
+        return new VideoCollectionResource($videos);
     }
 
 
@@ -38,6 +40,40 @@ class VideoController extends Controller
         //return a single video as a resource
         return new VideoResource($video);
     }
+
+    //likes for a single video
+    public function likes_counter(Request $request){
+        $video = $request->isMethod('put') ? Videos::findorFail($request->videos_id) : new Videos;
+
+        $video->likes_count = $request->input('likes_count');
+
+        if($video->save()){
+            return new VideoResource($video);
+        }
+    }
+
+    //Comments for a single video
+    public function com_counter(Request $request){
+        $video = $request->isMethod('put') ? Videos::findorFail($request->videos_id) : new Videos;
+
+        $video->comments_count = $request->input('com_count');
+
+        if($video->save()){
+            return new VideoResource($video);
+        }
+    }
+
+
+    //Fetch Videos with Variable Search String
+    public function search($key,$order){
+
+        $videos = Videos::with(['likes', 'comments'])->orderBy($key,$order)->paginate(10);
+
+        //get a collection of Videos as a resource
+        return new VideoCollectionResource($videos);
+
+    }
+
 
     public function store(Request $request)
     {

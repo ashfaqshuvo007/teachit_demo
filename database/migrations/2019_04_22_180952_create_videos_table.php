@@ -20,6 +20,8 @@ class CreateVideosTable extends Migration
             $table->string('url');
             $table->string('description');
             $table->string('thumbnailUrl'); 
+            $table->Integer('likes_count')->nullable();
+            $table->Integer('comments_count')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');            
         });

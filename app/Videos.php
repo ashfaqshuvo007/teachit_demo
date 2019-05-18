@@ -25,3 +25,4 @@ class Videos extends Model
         return $this->hasMany(Likes::class,'videos_id');
     }
 }
+    

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources; 
+namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Video extends JsonResource
-{ 
+class LikeResource extends JsonResource
+{
     /**
      * Transform the resource into an array.
      *
