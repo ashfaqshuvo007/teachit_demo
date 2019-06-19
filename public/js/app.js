@@ -1846,11 +1846,9 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.pagination = pagination;
     },
-    //Delete a single video
+    //Delete a single vide
     deleteVideo: function deleteVideo(videos_id) {
       var _this2 = this;
-
-      console.log(videos_id);
 
       if (confirm('Are You Sure?')) {
         fetch("api/video/".concat(videos_id), {
@@ -1873,16 +1871,16 @@ __webpack_require__.r(__webpack_exports__);
       if (this.edit === false) {
         //add
         fetch('api/video', {
-          method: 'post',
-          body: JSON.stringify(this.videos),
+          method: 'POST',
+          body: JSON.stringify(this.video),
           headers: {
             'content-type': 'application/json'
           }
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this3.videos.title = '';
-          _this3.videos.description = '';
+          _this3.video.title = '';
+          _this3.video.description = '';
 
           _this3.fetchVideos();
         })["catch"](function (err) {
@@ -1890,6 +1888,13 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {//Update
       }
+    },
+    editVideo: function editVideo(video) {
+      this.edit = true;
+      this.video.id = video.id;
+      this.video.videos_id = video.id;
+      this.video.title = video.title;
+      this.video.description = video.description;
     }
   }
 });
@@ -37266,6 +37271,7 @@ var render = function() {
         "form",
         {
           staticClass: "mb-3",
+          attrs: { method: "post" },
           on: {
             submit: function($event) {
               $event.preventDefault()

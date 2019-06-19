@@ -2,7 +2,7 @@
   <div>
     <h2>Videos</h2>
     <br>
-    <form @submit.prevent="addVideo()" class="mb-3">
+    <form @submit.prevent="addVideo()" class="mb-3" method="post">
       <div class="form-group mb-3">
         <input type="text"  class="form-control" v-model="video.title" placeholder="Video Title"> 
       </div>
@@ -81,9 +81,8 @@ export default {
       };
       this.pagination = pagination;
     },
-    //Delete a single video
+    //Delete a single vide
     deleteVideo(videos_id){
-      console.log(videos_id);
         if(confirm('Are You Sure?')){
           fetch(`api/video/${videos_id}`,{
             method: 'delete'
@@ -102,22 +101,30 @@ export default {
       if(this.edit === false){
         //add
         fetch('api/video',{
-          method: 'post',
-          body:JSON.stringify(this.videos),
+          method: 'POST',
+          body:JSON.stringify(this.video),
           headers: {
             'content-type': 'application/json'
           }
         })
         .then(res =>res.json())
         .then(data => {
-            this.videos.title = '';
-            this.videos.description = '';
+            this.video.title = '';
+            this.video.description = '';
+
             this.fetchVideos();
         })
         .catch(err => console.log(err));
       }else{
         //Update
       }
+    },
+    editVideo(video){
+      this.edit = true;
+      this.video.id = video.id;
+      this.video.videos_id = video.id;
+      this.video.title = video.title;
+      this.video.description = video.description;
     }
     
 
